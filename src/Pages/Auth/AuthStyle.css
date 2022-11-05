@@ -1,0 +1,65 @@
+.Auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+.Auth>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.a-left {
+    gap: 2rem;
+}
+
+.a-left>img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.Webname>h1 {
+    font-size: 3rem;
+    background-image: var(--buttonBg);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.Webname>h6 {
+    font-size: 0.85rem;
+    margin-top: -30px;
+}
+
+.authForm {
+    background-color: var(--cardColor);
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.authForm>div {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.signLogin {
+    color: rgb(90, 189, 247);
+}
+.login-and-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-and-icon svg {
+    background-color: black;
+    border-radius: 50%;
+    color: aliceblue;
+    padding: 5px;
+}

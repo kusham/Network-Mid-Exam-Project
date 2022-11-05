@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./AuthStyle.css";
-import Logo from "../../Images/logo2.png";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login, signUp } from "../../actions/authActions";
+import "./AuthStyle.css";
+import Logo from "../../Resources/Images/logo.png";
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+
 const initialState = {
   firstName: "",
   lastName: "",
@@ -22,15 +24,15 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(userData);
-    if (isSignUp) {
-      userData.password === userData.confirmPassword
-        ? dispatch(signUp(userData, navigate))
-        : setConfirmPassword(false);
-    } else {
-      dispatch(login(userData, navigate));
-    }
+    // event.preventDefault();
+    // console.log(userData);
+    // if (isSignUp) {
+    //   userData.password === userData.confirmPassword
+    //     ? dispatch(signUp(userData, navigate))
+    //     : setConfirmPassword(false);
+    // } else {
+    //   dispatch(login(userData, navigate));
+    // }
   };
   const handleChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
@@ -60,7 +62,12 @@ const Auth = () => {
           className="infoForm authForm"
           onSubmit={handleSubmit}
         >
-          <h2>{isSignUp ? "Register" : "Login"}</h2>
+          <div className="login-and-icon">
+          {isSignUp ? <HowToRegIcon /> : <LockOpenIcon />}
+          
+          <h2> {isSignUp ? "Register" : "Login"}</h2>
+
+          </div>
           {isSignUp && (
             <div>
               <input
