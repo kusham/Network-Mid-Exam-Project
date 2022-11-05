@@ -1,0 +1,66 @@
+.Post {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: var(--cardColor);
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.Post>img {
+    width: 100%;
+    max-height: 20rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.postReact {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.like-icon {
+    cursor: pointer;
+}
+
+.liked {
+    color: rgb(248, 8, 8);
+}
+
+.liked:hover {
+    transform: scale(1.5);
+}
+
+.not-liked:hover {
+    transform: scale(1.5);
+    color: rgb(248, 8, 8);
+}
+
+.comment-icon {
+    cursor: pointer;
+}
+
+
+.comment-icon:hover {
+    transform: scale(1.5);
+}
+
+.share-icon {
+    transform: rotateY(180deg);
+    cursor: pointer;
+}
+
+.comment-section{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.comment-section>input {
+    border: none;
+    outline: none;
+    padding: 15px;
+    background: rgb(2, 2, 2, 0.1);
+    width: 100%;
+    border-radius: 10px;
+}
