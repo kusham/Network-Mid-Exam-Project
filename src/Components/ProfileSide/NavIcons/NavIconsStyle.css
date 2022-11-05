@@ -1,0 +1,23 @@
+
+.navIcons{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    background-color: rgb(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.navIcons>a>img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.navIcons>img{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.navIcons>img:hover{
+    cursor: pointer;
+}
