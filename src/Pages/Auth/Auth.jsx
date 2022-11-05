@@ -5,6 +5,7 @@ import "./AuthStyle.css";
 import Logo from "../../Resources/Images/logo.png";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { login, signUp } from "../../Actions/AuthActions";
 
 const initialState = {
   firstName: "",
@@ -24,15 +25,15 @@ const Auth = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
-    // console.log(userData);
-    // if (isSignUp) {
-    //   userData.password === userData.confirmPassword
-    //     ? dispatch(signUp(userData, navigate))
-    //     : setConfirmPassword(false);
-    // } else {
-    //   dispatch(login(userData, navigate));
-    // }
+    event.preventDefault();
+    console.log(userData);
+    if (isSignUp) {
+      userData.password === userData.confirmPassword
+        ? dispatch(signUp(userData, navigate))
+        : setConfirmPassword(false);
+    } else {
+      dispatch(login(userData, navigate));
+    }
   };
   const handleChange = (event) => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
@@ -42,9 +43,9 @@ const Auth = () => {
     setUserData(initialState);
     setConfirmPassword(true);
   };
-  //   useEffect(() => {
-  //     setUserData(initialState);
-  //   }, [])
+    useEffect(() => {
+      setUserData(initialState);
+    }, [])
 
   return (
     <div className="Auth">
