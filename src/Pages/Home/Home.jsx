@@ -1,8 +1,17 @@
 import React from 'react'
+import LeftSide from '../../Components/LeftSide/LeftSide'
+import ProfileSide from '../../Components/ProfileSide/ProfileSide'
+import Timeline from '../../Components/Timeline/Timeline'
+import './HomeStyle.css'
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className='Home'>
+        <LeftSide />
+        <Timeline />
+        <ProfileSide />
+    </div>
   )
 }
 
