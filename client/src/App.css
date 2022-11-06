@@ -27,7 +27,7 @@
   width: 32rem;
   height: 24rem;
   border-radius: 50%;
-  background:linear-gradient(rgb(230, 86, 76), rgb(115, 115, 240));
+  background:linear-gradient(rgb(3, 16, 196), rgb(115, 225, 240));
   filter: blur(120px);
 }
 

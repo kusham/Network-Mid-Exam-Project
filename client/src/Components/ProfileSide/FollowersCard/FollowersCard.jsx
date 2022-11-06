@@ -10,7 +10,7 @@ const FollowersCard = ({ location }) => {
   const [people, setPeople] = useState([]);
   const [render, setRender] = useState(false);
 
-  const  user  = useSelector((state) => state.authReducers.authData);
+  const  user  = useSelector((state) => state.authReducer.authData);
 
   useEffect(() => {
     const fetchPersons = async () => {

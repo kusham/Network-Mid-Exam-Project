@@ -20,7 +20,7 @@ module.exports.registerUser = async (req, res) => {
     }
     const savedUser = await newUser.save();
     const token = jwt.sign(
-      { username: user.username, id: user._id },
+      { username: savedUser.username, id: savedUser._id },
       process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
@@ -45,7 +45,7 @@ module.exports.loginUser = async (req, res) => {
 
   try {
     const user = await UserModel.findOne({ email: email });
-
+console.log(user)
     if (user) {
       const passwordValidity = await bcrypt.compare(password, user.password);
 
@@ -101,12 +101,14 @@ module.exports.getUser = async (req, res) => {
 };
 
 module.exports.getAllUsers = async (req, res) => {
+  console.log("get users");
   try {
     let users = await UserModel.find();
     users = users.map((user) => {
       const { password, ...otherDetails } = user._doc;
       return otherDetails;
     });
+    console.log(users);
     res.status(200).json({
       success: true,
       message: "users are fetched successfully",
@@ -115,7 +117,7 @@ module.exports.getAllUsers = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: "can not  all users",
+      message: "can not get all users",
       error: error.message,
     });
   }

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const ProfileCard = ({ location }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const  {user}  = useSelector((state) => state.authReducers.authData);
+  const  user  = useSelector((state) => state.authReducer.authData);
   const  posts  = useSelector((state) => state.postReducer.posts);
 
   const numberOfPosts = posts.filter((post)=> post.userId === user._id).length;
@@ -66,7 +66,7 @@ const ProfileCard = ({ location }) => {
       ) : (
         <span>
           <Link
-            to={`/profile/${user._id}`}
+            to={`/profile/${user?._id}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             My Profile

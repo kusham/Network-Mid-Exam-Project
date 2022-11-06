@@ -7,14 +7,14 @@ import { UilLocationPoint } from "@iconscout/react-unicons";
 import { UilSchedule } from "@iconscout/react-unicons";
 import { UilTimes } from "@iconscout/react-unicons";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadImage } from "../../../Actions/AuthActions";
 import { uploadPost } from "../../../Actions/PostActions";
+import { uploadImage } from "../../../API/UploadAPI";
 
 const PostShare = () => {
   const [textInput, setTextInput] = useState("");
   const [imageInput, setImageInput] = useState("");
   const imageRef = useRef();
-  const user = useSelector((state) => state.authReducers.authData);
+  const user = useSelector((state) => state.authReducer.authData);
   const loading = useSelector((state) => state.postReducer.uploading);
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const dispatch = useDispatch();

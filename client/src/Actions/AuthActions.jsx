@@ -16,6 +16,7 @@ export const login = (formData, navigate) => async (dispatch) => {
   dispatch({ type: AUTH_START });
   try {
     const { data } = await authAPI.logIn(formData);
+    console.log(data);
     dispatch({ type: AUTH_SUCCESS, data: data });
     // setUser(data.user);
     navigate("../home", { replace: true });
@@ -48,6 +49,7 @@ export const updateUser = (id, formData) => async (dispatch) => {
   dispatch({ type: UPDATING_START });
   try {
     const { data } = await authAPI.updateUser(id, formData);
+    console.log(data);
     dispatch({ type: UPDATING_SUCCESS, data: data });
   } catch (error) {
     console.log(error);
@@ -55,13 +57,7 @@ export const updateUser = (id, formData) => async (dispatch) => {
   }
 };
 
-export const uploadImage = (data) => async (dispatch) => {
-  try {
-    await authAPI.uploadImage(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 export const followUser = (id, data) => async (dispatch) => {
   try {

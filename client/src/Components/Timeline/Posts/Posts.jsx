@@ -7,7 +7,7 @@ import { getTimelinePosts } from "../../../Actions/PostActions";
 const Posts = ({location}) => {
   const loading = useSelector((state)=> state.postReducer.loading)
   let posts = useSelector((state)=> state.postReducer.posts)
-  const {user} = useSelector((state)=> state.authReducers.authData)
+  const user = useSelector((state)=> state.authReducer.authData)
 
   const dispatch = useDispatch();
   useEffect(() => {

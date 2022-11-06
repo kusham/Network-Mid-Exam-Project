@@ -32,17 +32,17 @@ const authReducer = (
         JSON.stringify({ ...action?.data.token })
       );
 
-      return { ...state, authData: action.data, loading: false, error: false };
+      return { ...state, authData: action.data.user, loading: false, error: false };
 
     case AUTH_FAIL:
       return { ...state, loading: false, error: true };
     case UPDATING_START:
       return { ...state, updateLoading: true, error: false };
     case UPDATING_SUCCESS:
-      sessionStorage.setItem("profile", JSON.stringify({ ...action?.data }));
+      sessionStorage.setItem("profile", JSON.stringify({ ...action?.data.user }));
       return {
         ...state,
-        authData: action.data,
+        authData: action.data.user,
         updateLoading: false,
         error: false,
       };
