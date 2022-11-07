@@ -1,7 +1,8 @@
 const UserModel = require("./UserModel");
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
-
+const jwt = require("jsonwebtoken");
+const axios = require("axios");
+const getImageUrl = require("./AuthService");
 module.exports.registerUser = async (req, res) => {
   console.log("register");
   console.log(req.body);
@@ -28,7 +29,7 @@ module.exports.registerUser = async (req, res) => {
       success: true,
       message: "User successfully registered",
       user: savedUser,
-      token : token
+      token: token,
     });
   } catch (error) {
     res.status(400).json({
@@ -41,16 +42,18 @@ module.exports.registerUser = async (req, res) => {
 
 module.exports.loginUser = async (req, res) => {
   console.log("login");
-  const { email, password } = req.body;
+  const { email } = req.body;
 
   try {
     const user = await UserModel.findOne({ email: email });
-console.log(user)
+    console.log(user);
     if (user) {
-      const passwordValidity = await bcrypt.compare(password, user.password);
+      const passwordValidity = await bcrypt.compare(req.body.password, user.password);
 
       if (!passwordValidity) {
-        return res.status(400).json({success: false, message : "Invalid credentials"});
+        return res
+          .status(400)
+          .json({ success: false, message: "Invalid credentials" });
       }
       const token = jwt.sign(
         { username: user.username, id: user._id },
@@ -58,7 +61,17 @@ console.log(user)
         { expiresIn: "1h" }
       );
 
-      res.status(200).json({ success: true, user: user, token: token });
+      const {password, ...otherDetails} = user._doc;
+      if (otherDetails.profilePicture) {
+        otherDetails.profilePicUrl = await getImageUrl(otherDetails.profilePicture);
+      }
+      if (otherDetails.coverPicture) {
+        otherDetails.coverPicUrl = await getImageUrl(otherDetails.coverPicture);
+      }
+      console.log("user");
+      console.log(otherDetails);
+
+      res.status(200).json({ success: true, user: otherDetails, token: token });
     } else {
       res.status(404).json({ success: true, message: "This user not found" });
     }
@@ -70,8 +83,6 @@ console.log(user)
     });
   }
 };
-
-
 
 module.exports.getUser = async (req, res) => {
   const id = req.params.id;
@@ -85,6 +96,10 @@ module.exports.getUser = async (req, res) => {
       });
     }
     const { password, ...otherDetails } = user._doc;
+
+    if (otherDetails.profilePicture) {
+      otherDetails.profilePicUrl = await getImageUrl(otherDetails.profilePicture);
+    }
 
     res.status(200).json({
       success: true,
@@ -104,10 +119,19 @@ module.exports.getAllUsers = async (req, res) => {
   console.log("get users");
   try {
     let users = await UserModel.find();
-    users = users.map((user) => {
-      const { password, ...otherDetails } = user._doc;
-      return otherDetails;
-    });
+
+    users = await Promise.all(
+      users.map(async (user) => {
+        const { password, profilePicture, ...otherDetails } = user._doc;
+        if (profilePicture) {
+          // console.log(getImageUrl(profilePicture));
+          otherDetails.profilePicUrl = await getImageUrl(profilePicture);
+        }
+
+        return otherDetails;
+      })
+    );
+
     console.log(users);
     res.status(200).json({
       success: true,
@@ -125,24 +149,31 @@ module.exports.getAllUsers = async (req, res) => {
 module.exports.updateUser = async (req, res) => {
   const id = req.params.id;
   // console.log("Data Received", req.body)
-  const { _id, password } = req.body;
+  const { _id } = req.body;
 
   if (id === _id) {
     try {
-      if (password) {
-        const salt = await bcrypt.genSalt(10);
-        req.body.password = await bcrypt.hash(password, salt);
-      }
+      // if (password) {
+      //   const salt = await bcrypt.genSalt(10);
+      //   req.body.password = await bcrypt.hash(password, salt);
+      // }
 
       const user = await UserModel.findByIdAndUpdate(id, req.body, {
         new: true,
       });
+      const {password, ...otherDetails} = user._doc;
+      if (otherDetails.profilePicture) {
+        otherDetails.profilePicUrl = await getImageUrl(otherDetails.profilePicture);
+      }
+      if (otherDetails.coverPicture) {
+        otherDetails.coverPicUrl = await getImageUrl(otherDetails.coverPicture);
+      }
       console.log(user);
 
       res.status(200).json({
         success: true,
         message: "User has successfully updated",
-        user: user,
+        user: otherDetails,
       });
     } catch (error) {
       res.status(400).json({
@@ -158,6 +189,7 @@ module.exports.updateUser = async (req, res) => {
   }
 };
 module.exports.deleteUser = async (req, res) => {};
+
 module.exports.followUser = async (req, res) => {
   const id = req.params.id;
   const { _id } = req.body;

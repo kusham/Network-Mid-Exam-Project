@@ -4,10 +4,10 @@ import { followUser, unFollowUser } from "../../../../Actions/AuthActions";
 import defaultProfile from "../../../../Resources/Images/defaultProfile.png";
 
 const User = ({ person }) => {
-  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
   const  user  = useSelector((state) => state.authReducer.authData);
   const dispatch = useDispatch();
-  const [following, setFollowing] = useState(person.followers.includes(user._id));
+  const [following, setFollowing] = useState(person.followers?.includes(user._id));
 
   const handleFollow = () => {
     console.log("first")
@@ -22,8 +22,8 @@ const User = ({ person }) => {
       <div>
         <img
           src={
-            person.profilePicture
-              ? publicFolder + person.profilePicture
+            person.profilePicUrl
+              ? person.profilePicUrl
               : defaultProfile
           }
           alt="profile"

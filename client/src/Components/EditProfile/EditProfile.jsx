@@ -37,8 +37,12 @@ const EditProfile = ({ modalOpened, setModalOpened, user }) => {
       const fileName = Date.now() + profileImage.name;
       data.append("name", fileName);
       data.append("file", profileImage);
+      // const data = {
+      //   name: fileName,
+      //   file: profileImage
+      // }
       UserData.profilePicture = fileName;
-      // console.log(profileImage);
+      console.log(data);
       try {
         const response = await uploadImage(data);
         console.log(response);

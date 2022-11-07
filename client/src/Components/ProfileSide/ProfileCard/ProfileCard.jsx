@@ -6,27 +6,21 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ProfileCard = ({ location }) => {
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const  user  = useSelector((state) => state.authReducer.authData);
-  const  posts  = useSelector((state) => state.postReducer.posts);
+  // const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const user = useSelector((state) => state.authReducer.authData);
+  const posts = useSelector((state) => state.postReducer.posts);
 
-  const numberOfPosts = posts.filter((post)=> post.userId === user._id).length;
+  const numberOfPosts = posts.filter((post) => post.userId === user._id).length;
 
-  
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
-      <img src={
-            user.coverPicture
-              ? serverPublic + user.coverPicture
-              : DCover
-          } alt="CoverImage" />
         <img
-          src={
-            user.profilePicture
-              ? serverPublic + user.profilePicture
-              : ProfileImg
-          }
+          src={user.coverPicUrl ? user.coverPicUrl : DCover}
+          alt="CoverImage"
+        />
+        <img
+          src={user.profilePicUrl ? user.profilePicUrl : ProfileImg}
           alt="ProfileImage"
         />
       </div>
