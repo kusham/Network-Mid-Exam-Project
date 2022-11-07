@@ -16,7 +16,6 @@ const PostShare = () => {
   const imageRef = useRef();
   const user = useSelector((state) => state.authReducer.authData);
   const loading = useSelector((state) => state.postReducer.uploading);
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const dispatch = useDispatch();
   const handleShare = () => {
     console.log(textInput);
@@ -59,8 +58,8 @@ const PostShare = () => {
       <div className="PostShare-Profile">
         <img
           src={
-            user.profilePicture
-              ? serverPublic + user.profilePicture
+            user.profilePicUrl
+              ? user.profilePicUrl
               : defaultProfile
           }
           alt="Profile"
