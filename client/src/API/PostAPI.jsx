@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "http://localhost:5002" });
 
 API.interceptors.request.use((req) => {
     if (sessionStorage.getItem('profile')) {
@@ -13,7 +13,7 @@ API.interceptors.request.use((req) => {
 export const uploadPost = (data) => API.post("/posts", data);
 
 export const getTimelinePosts= (id)=> API.get(`/posts/${id}/timeline`);
-export const likePost=(id, userId)=>API.put(`posts/${id}/like`, {userId: userId})
-export const commentPost=(id, data)=>API.post(`posts/${id}/comment`, data)
-export const deletePost=(id)=>API.delete(`posts/${id}`)
+export const likePost=(id, userId)=>API.put(`/posts/${id}/like`, {userId: userId})
+export const commentPost=(id, data)=>API.post(`/posts/${id}/comment`, data)
+export const deletePost=(id)=>API.delete(`/posts/${id}`)
 
