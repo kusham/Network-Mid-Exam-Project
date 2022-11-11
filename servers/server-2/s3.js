@@ -47,7 +47,7 @@ const getURL = async (fileName) => {
     Bucket: bucketName,
   };
   const command = new GetObjectCommand(getObjectParams);
-  return await getSignedUrl(s3, command, { expiresIn: 3600 });
+  return await getSignedUrl(s3, command, { expiresIn: 3600*24 });
 };
 
 module.exports = { uploadFile, getURL };
