@@ -17,7 +17,9 @@ const PostShare = () => {
   const user = useSelector((state) => state.authReducer.authData);
   const loading = useSelector((state) => state.postReducer.uploading);
   const dispatch = useDispatch();
-  const handleShare = () => {
+
+
+  const handleShare = async() => {
     console.log(textInput);
     console.log(imageInput);
 
@@ -33,7 +35,8 @@ const PostShare = () => {
       newPost.image = fileName;
       console.log(newPost);
       try {
-        dispatch(uploadImage(data));
+        const response = await uploadImage(data);
+        console.log(response);
       } catch (err) {
         console.log(err);
       }

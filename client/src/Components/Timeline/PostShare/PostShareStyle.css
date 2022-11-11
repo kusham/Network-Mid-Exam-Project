@@ -5,6 +5,7 @@
     padding: 1rem;
     border-radius: 1rem;
     flex-direction: column;
+    width: 90%;
 }
 .PostShare-Profile{
     display: flex;
