@@ -11,6 +11,10 @@ const FollowersModal = ({ modalOpened, setModalOpened, setRender }) => {
           ? theme.colors.dark[9]
           : theme.colors.gray[2]
       }
+      overflow="inside"
+      transition="scale"
+      transitionDuration={1600}
+      transitionTimingFunction="ease"
       overlayOpacity={0.55}
       overlayBlur={3}
       size="45%"
@@ -20,7 +24,7 @@ const FollowersModal = ({ modalOpened, setModalOpened, setRender }) => {
         setRender((prev) => !prev);
       }}
     >
-      <div style={{ height: "200px" }}>
+      <div style={{ height: "600px" }}>
         <FollowersCard location="modal" />
       </div>
     </Modal>
