@@ -1,0 +1,18 @@
+.root {
+    padding-top: 80;
+    padding-bottom: 80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .title {
+    font-weight: 900;
+    font-size: 34;
+    margin-bottom:  10px;
+    font-family:  sans-serif
+  }
+  .control{
+    width: 100%;
+  }
