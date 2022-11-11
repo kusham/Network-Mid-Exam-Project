@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import "./App.css";
+import PageNotFound from "./Components/PageNotFound/PageNotFound";
 import Auth from "./Pages/Auth/Auth";
+import Chat from "./Pages/chat/Chat";
 import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
 
@@ -33,11 +35,11 @@ function App() {
             path="/profile/:id"
             element={user ? <Profile /> : <Navigate to="../auth" />}
           />
-          {/* <Route
+          <Route
             path="/chat"
             element={user ? <Chat /> : <Navigate to="../auth" />}
           />
-          <Route path="*" element={<PageNotFound />} /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
