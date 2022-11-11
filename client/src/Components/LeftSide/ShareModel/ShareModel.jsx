@@ -12,6 +12,9 @@ const ShareModal = ({ modalOpened, setModalOpened }) => {
           : theme.colors.gray[2]
       }
       overlayOpacity={0.55}
+      transition="scale"
+      transitionDuration={1600}
+      transitionTimingFunction="ease"
       overlayBlur={3}
       size="55%"
       opened={modalOpened}
