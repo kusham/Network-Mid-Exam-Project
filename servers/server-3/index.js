@@ -12,7 +12,7 @@ dbConnection();
 
 const PORT = process.env.PORT || 5002;
 
-app.use("/post", postRouts);
+app.use("/posts", postRouts);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
