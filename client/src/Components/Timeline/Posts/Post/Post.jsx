@@ -10,7 +10,7 @@ import { likePost } from "../../../../API/PostAPI";
 
 const Post = ({ post }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
-  const user = useSelector((state) => state.authReducers.authData);
+  const user = useSelector((state) => state.authReducer.authData);
   const [likes, setLikes] = useState(post.likes.length);
   const [liked, setLiked] = useState(post.likes.includes(user._id));
   const [comments, setComments] = useState(false);
@@ -36,7 +36,7 @@ const Post = ({ post }) => {
   return (
     <div className="Post">
       {post.image ? (
-        <img src={post.image ? serverPublic + post.image : ""} alt="" />
+        <img src={post.postImageUrl ?  post.postImageUrl : ""} alt="" />
       ) : (
         <span>{post.desc}</span>
       )}
@@ -63,9 +63,6 @@ const Post = ({ post }) => {
       </span>
 
       <div className="detail">
-        <span>
-          <b>by {post.userName}</b>
-        </span>
         {post.image && <span>{post.desc}</span>}
       </div>
       {comments && (
