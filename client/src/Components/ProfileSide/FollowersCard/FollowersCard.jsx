@@ -10,16 +10,20 @@ const FollowersCard = ({ location }) => {
   const [people, setPeople] = useState([]);
   const [render, setRender] = useState(false);
 
-  const  user  = useSelector((state) => state.authReducer.authData);
+  const user = useSelector((state) => state.authReducer.authData);
 
   useEffect(() => {
     const fetchPersons = async () => {
       const { data } = await getAllUser();
-        setPeople(data.users)
+      setPeople(data.users);
     };
     fetchPersons();
   }, [render]);
-const renderPeople = people.filter((item) => item._id !== user._id);
+  const renderPeople =
+    location !== "modal"
+      ? people.filter((item) => item._id !== user._id).slice(0, 3)
+      : people.filter((item) => item._id !== user._id);
+
   return (
     <div className="FollowersCard">
       <h3>People you may know</h3>
@@ -34,7 +38,7 @@ const renderPeople = people.filter((item) => item._id !== user._id);
       )}
 
       <FollowersModel
-      setRender={setRender}
+        setRender={setRender}
         modalOpened={modalOpened}
         setModalOpened={setModalOpened}
       />
