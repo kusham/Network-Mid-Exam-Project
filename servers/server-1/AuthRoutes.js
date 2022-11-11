@@ -10,8 +10,8 @@ router.get('/:id', getUser);
 router.get('/users/all',getAllUsers)
 router.put('/user/:id',  updateUser)
 router.delete('/:id',  deleteUser)
-router.put('/:id/follow',  followUser)
-router.put('/:id/unfollow',  unFollowUser)
+router.put('/user/:id/follow',  followUser)
+router.put('/user/:id/unfollow',  unFollowUser)
 
 
 
