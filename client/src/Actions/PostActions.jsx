@@ -32,7 +32,7 @@ export const getTimelinePosts = (id) => async (dispatch) => {
     const { data } = await PostApi.getTimelinePosts(id);
     console.log(data);
     console.log("first");
-    dispatch({ type: RETRIEVING_SUCCESS, data: data });
+    dispatch({ type: RETRIEVING_SUCCESS, data: data.posts });
   } catch (error) {
     console.log(error);
     dispatch({ type: RETRIEVING_FAIL });
