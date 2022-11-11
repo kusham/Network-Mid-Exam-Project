@@ -3,7 +3,7 @@ import OtherHousesIcon from '@mui/icons-material/House';
 // import Home from "../../../Images/home.png";
 // import Noti from "../../../Images/noti.png";
 // import Comment from "../../../Images/comment.png";
-import { UilComment, UilSetting } from "@iconscout/react-unicons";
+import { UilComment, UilSetting, UilHome } from "@iconscout/react-unicons";
 import './NavIconsStyle.css'
 import { Link } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const NavIcons = () => {
   return (
     <div className="navIcons">
     <Link to="../home">
-      <OtherHousesIcon />
+      <UilHome />
     </Link>
     <UilSetting />
     {/* <img src={Noti} alt="" /> */}
