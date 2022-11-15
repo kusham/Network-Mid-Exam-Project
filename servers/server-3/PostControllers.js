@@ -146,7 +146,7 @@ module.exports.getTimelinePosts = async (req, res) => {
   const userId = req.params.id;
   try {
     let userPosts = await PostModel.find({ userId: userId });
-    const response = await axios.get(`http://localhost:5000/auth/${userId}`);
+    const response = await axios.get(`/auth/${userId}`);
     const user = response.data.user;
 
     console.log("userPost");
