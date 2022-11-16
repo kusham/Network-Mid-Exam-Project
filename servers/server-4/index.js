@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-Parser");
 const dbConnection = require("./Config/DBConnect");
 const cors = require("cors");
 
@@ -8,7 +7,7 @@ const chatsRoutes = require("./ChatRoutes");
 const messageRoutes = require("./MessageRoutes");
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 dbConnection();
 
