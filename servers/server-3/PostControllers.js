@@ -116,7 +116,6 @@ module.exports.deletePost = async (req, res) => {
   }
 };
 
-// module.exports.getTimelinePosts = async (req, res) => {};
 
 // like/dislike a post
 module.exports.likePost = async (req, res) => {
@@ -176,49 +175,8 @@ module.exports.getTimelinePosts = async (req, res) => {
       })
     );
     console.log(userPosts);
-    // const currentUser = await UserModel.findById(userId)
-    // const followingPosts = await UserModel.aggregate([
-    //   {
-    //     $match: {
-    //       _id: new mongoose.Types.ObjectId(userId),
-    //     },
-    //   },
-    //   {
-    //     $lookup: {
-    //       from: "posts",
-    //       localField: "following",
-    //       foreignField: "userId",
-    //       as: "followingPosts",
-    //     },
-    //   },
-    //   {
-    //     $project: {
-    //       followingPosts: 1,
-    //       _id: 0,
-    //     },
-    //   },
-    // ]);
-    // console.log(followingPosts);
-    // let posts = [];
-    // await Promise.all(
-    //   followingPosts[0].followingPosts.map(async (post) => {
-    //     const user = await UserModel.findById(post.userId);
-    //     posts.push({ ...post, userName: user.userName });
-    //   })
-    // );
-    // const userPost = [];
-    // await Promise.all(
-    //   currentUserPosts.map(async (post) => {
-    //     userPost.push({ ...post._doc, userName: currentUser.userName });
-    //   })
-    // );
-    // console.log(userPost);
-
+    
     res.status(200).json(
-      //   userPost.concat(...posts).sort((a, b) => {
-      //     return new Date(b.createdAt) - new Date(a.createdAt);
-      //   }
-      //   )
       { success: true, message: "Post successfully fetched", posts: userPosts }
     );
   } catch (error) {
@@ -243,7 +201,6 @@ module.exports.commentPost = async (req, res) => {
       { _id: id },
       { $push: { comments: { userId: userId, comment: comment } } }
     );
-    // console.log(ob);
     res.status(200).json({ success: true, message: "comment added" });
   } catch (error) {
     res.status(400).json({

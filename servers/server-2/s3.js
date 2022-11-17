@@ -1,5 +1,4 @@
 const fs = require("fs");
-// const sharp = require('sharp');
 const {
   S3Client,
   PutObjectCommand,
@@ -24,10 +23,6 @@ const s3 = new S3Client({
 const uploadFile = async (file, name) => {
   console.log("first");
 
-  //   //   resize the image
-  //   const buffer = await sharp(file)
-  //     .resize({ height: 1080, width: 1920, fit: "contain" })
-  //     .toBuffer();
   const uploadParams = {
     Bucket: bucketName,
     Body: file.buffer,
