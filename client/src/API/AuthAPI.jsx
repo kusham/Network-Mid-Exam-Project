@@ -8,14 +8,6 @@ export const logIn= (formData)=> API.post('/auth/login',formData);
 export const signUp = (formData) => API.post('/auth/register', formData);
 
 
-// API.interceptors.request.use((req) => {
-//     if (sessionStorage.getItem('profile')) {
-//       req.headers.Authorization = `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`;
-//     }
-  
-//     return req;
-//   });
-
 export const getUser = (userId) => API.get(`/auth/user/${userId}`);
 export const updateUser = (id, formData) => API.put(`/auth/user/${id}`, formData);
 export const getAllUser = ()=> API.get('/auth/users/all')
