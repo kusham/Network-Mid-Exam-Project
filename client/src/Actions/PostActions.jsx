@@ -40,10 +40,13 @@ export const getTimelinePosts = (id) => async (dispatch) => {
 };
 
 export const commentPost = (commentData) => async (dispatch) => {
-console.log(commentData);
+  console.log(commentData);
   dispatch({ type: COMMENTING_START });
   try {
-    const { data } = await PostApi.commentPost(commentData.id, {userId :commentData.userId, comment : commentData.comment});
+    const { data } = await PostApi.commentPost(commentData.id, {
+      userId: commentData.userId,
+      comment: commentData.comment,
+    });
     console.log(data);
     if (data.success === true) {
       dispatch({

@@ -38,7 +38,7 @@ const postReducer = (
       return { ...state, loading: true, error: false };
     case COMMENTING_SUCCESS: // code does no work as expected. need to fix
     // const index = state.posts.map((post) => post._id === action.data.id && (post.comment = action.data.comment, true));
-    // return {...state, posts: updatedPosts, loading: false, error: false};
+    return {...state, posts: action.data, loading: false, error: false};
     break;
     case COMMENTING_FAIL:
       return { ...state, loading: false, error: true };
